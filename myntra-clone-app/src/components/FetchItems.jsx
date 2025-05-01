@@ -13,10 +13,13 @@ const FetchItems = () => {
     const controller = new AbortController();
     const signal = controller.signal;
 
+    dispatch(fetchStatusActions.markFetchingStarted());
     fetch("http://localhost:8080/items", { signal })
       .then((res) => res.json())
       .then(({ items }) => {
         dispatch(fetchStatusActions.markFetchDone());
+        dispatch(fetchStatusActions.markFetchingFinished());
+
         dispatch(itemsActions.addInitialItems(items[0]));
       });
 
@@ -26,14 +29,7 @@ const FetchItems = () => {
     };
   }, [fetchStatus]);
 
-  return (
-    <>
-      <div>
-        Fetch Done: {fetchStatus.fetchDone}
-        Currently Fetching: {fetchStatus.currentlyFetching}
-      </div>
-    </>
-  );
+  return <></>;
 };
 
 export default FetchItems;
