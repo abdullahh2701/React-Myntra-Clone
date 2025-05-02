@@ -14,7 +14,7 @@ function App() {
       <Header />
       <FetchItems />
       {fetchStatus.currentlyFetching ? <LoadingSpinner /> : <Outlet />}
-      <Outlet />
+
       <Footer />
     </>
   );
